@@ -1,0 +1,97 @@
+server:
+  port: ${SERVER_PORT:8081}
+  servlet:
+    context-path: ${SERVER_CONTEXT_PATH:}
+
+logging:
+  level:
+    org:
+      springframework:
+        jms: INFO
+        context: DEBUG
+        web: INFO
+        security: INFO
+        kafka: INFO
+      hibernate:
+        SQL: DEBUG
+        type: trace
+      apache:
+        kafka:
+          clients: WARN
+
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  application:
+    name: ${SERVER_APP_NAME:spring-demo-server}
+  output:
+    ansi:
+      enabled: ALWAYS
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${DATASOURCE_USERNAME:postgres}
+    password: ${DATASOURCE_USERNAME:123456}
+    tomcat:
+      test-while-idle: true
+      test-on-borrow: true
+      validation-query: select 1
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 10000
+      pool-name: JpaHikariCP
+      maxLifetime: 2000000
+      connectionTimeout: 30000
+      auto-commit: false
+  jpa:
+    showSql: true
+    generateDdl: false
+    properties:
+      hibernate:
+        order_inserts: true
+        order_updates: true
+        connection:
+          provider_disables_autocommit: true
+        generate_statistics: true
+        temp:
+          use_jdbc_metadata_defaults: false
+        enable_lazy_load_no_trans: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      naming:
+        implicitStrategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
+#        physicalStrategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      ddl-auto: update
+    open-in-view: false
+  sql:
+    init:
+      platform: postgresql
+      mode: always
+      encoding: UTF-8
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      FAIL_ON_EMPTY_BEANS: false
+    deserialization:
+      unwrap-root-value: false
+  info:
+  app:
+    name: ${spring.application.name}
+    description: ${SERVER_DESCRIPTION:charounkara Spring Demo Server}
+  build:
+    groupId: ${SERVER_BUILD_GROUP_ID:com.charounkara}
+    artifact: ${SERVER_BUILD_ARTIFACT:spring-demo-server}
+    name: ${SERVER_BUILD_NAME:charounkara Server Project}
+    version: ${SERVER_BUILD_VERSION:${module.version}

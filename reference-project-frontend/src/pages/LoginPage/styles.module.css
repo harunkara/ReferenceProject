@@ -1,0 +1,16 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input,
+button {
+  margin-top: 8px;
+}
+
+body > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
