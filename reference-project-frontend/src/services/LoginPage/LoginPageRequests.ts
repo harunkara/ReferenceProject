@@ -10,8 +10,7 @@ export const sendLoginRequest = async (loginData: ILoginModel) => {
   };
   fetch(`${import.meta.env.VITE_API}/auth/login`, requestOptions).then(
     (response) => {
-      if (!response.ok) throw new Error("İşlem başarısız");
-      else return response.json();
+      return response.json();
     }
   );
 };
