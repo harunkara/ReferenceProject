@@ -4,6 +4,8 @@ import CharounButton from "../../components/ui/CharounButton";
 import CharounContainer from "../../components/ui/CharounContainer";
 import "./styles.module.css";
 import { sendLoginRequest } from "../../services/LoginPage/LoginPageRequests";
+import { useLocalize } from "../../hooks/useLocalize";
+import { StringCases } from "../../utils/Cases";
 
 const LoginPage = () => {
   const [username, setUsername] = useState<string>("");
@@ -16,14 +18,14 @@ const LoginPage = () => {
     <>
       <CharounContainer>
         <CharounInput
-          placeholder="Username"
+          placeholder={useLocalize("username", StringCases["Title Case"])}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setUsername(e.target.value)
           }
         ></CharounInput>
         <CharounInput
           type="password"
-          placeholder="Password"
+          placeholder={useLocalize("password", StringCases["Title Case"])}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setPassword(e.target.value)
           }
