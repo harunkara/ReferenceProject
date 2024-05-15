@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import CharounInput from "../../components/form/CharounInput";
 import CharounButton from "../../components/ui/CharounButton";
 import CharounContainer from "../../components/ui/CharounContainer";
@@ -6,13 +6,22 @@ import "./styles.module.css";
 import { sendLoginRequest } from "../../services/LoginPage/LoginPageRequests";
 import { useLocalize } from "../../hooks/useLocalize";
 import { StringCases } from "../../utils/Cases";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const handleLogin = async () => {
     const response = await sendLoginRequest({ username, password });
-    console.log(response);
+    if (response.data.user) {
+      setUser(response.data.user);
+      navigate("/");
+    } else {
+      console.log("USER NOT FOUND");
+    }
   };
   return (
     <>
