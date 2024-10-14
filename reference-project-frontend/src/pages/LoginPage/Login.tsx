@@ -11,13 +11,14 @@ import { UserContext } from "../../contexts/UserContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { setUser } = useContext(UserContext);
+  const { setUser, setJwt } = useContext(UserContext);
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const handleLogin = async () => {
     const response = await sendLoginRequest({ username, password });
     if (response.data.user) {
       setUser(response.data.user);
+      setJwt(response.data.jwt);
       navigate("/");
     } else {
       console.log("USER NOT FOUND");

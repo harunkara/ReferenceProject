@@ -19,10 +19,4 @@ public class ReferenceprojectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ReferenceprojectApplication.class, args);
 	}
-	@Bean
-	CommandLineRunner run(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncode){
-		return args ->{
-		
-		};
-	}
 }
