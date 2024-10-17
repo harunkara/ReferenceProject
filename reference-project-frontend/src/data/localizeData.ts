@@ -8,6 +8,8 @@ export interface ILocalizeData {
   surname: ILocalizeLanguages;
   username: ILocalizeLanguages;
   password: ILocalizeLanguages;
+  userNotFound: ILocalizeLanguages;
+  unknownExceptionOccured: ILocalizeLanguages;
 }
 
 export const localizeData: ILocalizeData = {
@@ -15,4 +17,12 @@ export const localizeData: ILocalizeData = {
   surname: { tr: "soyisim", en: "surname" },
   username: { tr: "kullanıcı adı", en: "username" },
   password: { tr: "şifre", en: "password" },
+  userNotFound: {
+    tr: "Kullanıcı adı veya şifre yanlış/eksik",
+    en: "Username or password incorrect/incomplete",
+  },
+  unknownExceptionOccured: {
+    tr: "Bilinmeyen bir hata oluştu",
+    en: "Unknown exception occured",
+  },
 };

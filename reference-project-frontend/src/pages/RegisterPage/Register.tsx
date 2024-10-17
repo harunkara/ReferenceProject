@@ -1,18 +1,41 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import CharounInput from "../../components/form/CharounInput";
 import CharounContainer from "../../components/ui/CharounContainer";
-import { useLocalize } from "../../hooks/useLocalize";
 import { StringCases } from "../../utils/Cases";
 import CharounButton from "../../components/ui/CharounButton";
 import { sendRegisterRequest } from "../../services/RegisterPage/RegisterPageRequests";
+import { UserContext } from "../../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
+import callNotification from "../../components/ui/CharounNotification";
+import { useLocalize } from "../../hooks/useLocalize";
+import { AxiosError } from "axios";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const { setUser, setJwt } = useContext(UserContext);
+  const unknownExceptionOccured = useLocalize("unknownExceptionOccured");
+  const userNotFoundMessage = useLocalize("userNotFound");
 
   const handleRegister = async () => {
-    const response = await sendRegisterRequest({ username, password });
-    console.log(response);
+    if (username === "" || password === "") {
+      callNotification("error", userNotFoundMessage);
+      return;
+    }
+    try {
+      const response = await sendRegisterRequest({ username, password });
+      if (response.data.user) {
+        setUser(response.data.user);
+        setJwt(response.data.jwt);
+        navigate("/");
+      } else {
+        callNotification("error", unknownExceptionOccured);
+      }
+    } catch (error) {
+      const axiosError = error as AxiosError<{ message: string }>;
+      callNotification("error", axiosError!.response!.data!.message);
+    }
   };
 
   return (

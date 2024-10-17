@@ -3,6 +3,7 @@ package com.charounkara.referenceproject.controllers;
 import com.charounkara.referenceproject.models.dtos.Errors.ErrorResponseDTO;
 import com.charounkara.referenceproject.models.dtos.LoginResponseDTO;
 import com.charounkara.referenceproject.models.dtos.RegistrationDTO;
+import com.charounkara.referenceproject.models.dtos.RegistrationResponseDTO;
 import com.charounkara.referenceproject.models.entities.User;
 import com.charounkara.referenceproject.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,22 +24,14 @@ public class AuthenticationController {
     private AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody RegistrationDTO body){
-        return authenticationService.registerUser(body.getUsername(), body.getPassword());
+    public ResponseEntity<?>  registerUser(@RequestBody RegistrationDTO body){
+        RegistrationResponseDTO response= authenticationService.registerUser(body.getUsername(), body.getPassword());
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody RegistrationDTO body){
         LoginResponseDTO response= authenticationService.loginUser(body.getUsername(), body.getPassword());
-        if(response.getUser()!=null){
-            return ResponseEntity.ok(response);
-        }else{
-            ErrorResponseDTO errorResponse = new ErrorResponseDTO(
-                    HttpStatus.UNAUTHORIZED.value(),
-                    "100",
-                    "User not found or wrong username"
-            );
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
-        }
+        return ResponseEntity.ok(response);
     }
 }

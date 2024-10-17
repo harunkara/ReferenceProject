@@ -9,16 +9,12 @@ export function AppLayout(props: IProps) {
       <div className={styles.parent}>
         <div className={styles.header}>FakeBorsa</div>
         <div className={styles.body}>
-          <div className={styles.sideBar} style={{ backgroundColor: "blue" }}>
+          <div className={styles.sideBar}>
             <div>Deneme</div>
           </div>
-          <div className={styles.content} style={{ backgroundColor: "pink" }}>
-            {children}
-          </div>
+          <div className={styles.content}>{children}</div>
         </div>
-        <div className={styles.footer} style={{ backgroundColor: "grey" }}>
-          I am Footer
-        </div>
+        <div className={styles.footer}>I am Footer</div>
       </div>
     </>
   );

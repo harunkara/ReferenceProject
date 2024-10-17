@@ -1,15 +1,14 @@
 package com.charounkara.referenceproject.models.dtos;
 
-import com.charounkara.referenceproject.models.dtos.Errors.ErrorResponseDTO;
 import com.charounkara.referenceproject.models.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class LoginResponseDTO {
+@NoArgsConstructor
+@Data
+public class RegistrationResponseDTO {
     private User user;
     private String jwt;
 }
