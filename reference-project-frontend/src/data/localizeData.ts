@@ -10,6 +10,7 @@ export interface ILocalizeData {
   password: ILocalizeLanguages;
   userNotFound: ILocalizeLanguages;
   unknownExceptionOccured: ILocalizeLanguages;
+  logout: ILocalizeLanguages;
 }
 
 export const localizeData: ILocalizeData = {
@@ -25,4 +26,5 @@ export const localizeData: ILocalizeData = {
     tr: "Bilinmeyen bir hata oluştu",
     en: "Unknown exception occured",
   },
+  logout: { tr: "Çıkış Yap", en: "Logout" },
 };

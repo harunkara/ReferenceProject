@@ -5,16 +5,17 @@ import "./index.css";
 import { LanguageProvider } from "./contexts/LanguageContext.tsx";
 import { UserProvider } from "./contexts/UserContext.tsx";
 import { AppLayout } from "./layouts/AppLayout.tsx";
-// import { App as AntdApp } from "antd";
+import { BrowserRouter } from "react-router-dom";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <LanguageProvider>
       <UserProvider>
-        {/* <AntdApp> */}
-        <AppLayout>
-          <App />
-        </AppLayout>
-        {/* </AntdApp> */}
+        <BrowserRouter>
+          <AppLayout>
+            <App />
+          </AppLayout>
+        </BrowserRouter>
       </UserProvider>
     </LanguageProvider>
   </React.StrictMode>

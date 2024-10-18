@@ -20,6 +20,7 @@
   color: rgb(201, 199, 199);
   padding: 10px;
   box-sizing: border-box;
+  justify-content: space-between;
 }
 
 .footer {
