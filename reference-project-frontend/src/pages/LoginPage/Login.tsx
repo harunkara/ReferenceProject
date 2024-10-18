@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useState } from "react";
 import CharounInput from "../../components/form/CharounInput";
 import CharounButton from "../../components/ui/CharounButton";
-import CharounContainer from "../../components/ui/CharounContainer";
+import CharounContainer from "../../components/ui/CharounCard";
 import "./styles.module.css";
 import { sendLoginRequest } from "../../services/LoginPage/LoginPageRequests";
 import { useLocalize } from "../../hooks/useLocalize";
@@ -40,7 +40,7 @@ const LoginPage = () => {
   };
   return (
     <>
-      <CharounContainer>
+      <CharounContainer title="Login">
         <CharounInput
           placeholder={useLocalize("username", StringCases["Title Case"])}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>

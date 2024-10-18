@@ -1,19 +1,18 @@
-import { ClassAttributes, HTMLAttributes, HTMLInputTypeAttribute } from "react";
+import { Input, InputProps } from "antd";
+import { HTMLInputTypeAttribute } from "react";
 
-interface IProps
-  extends HTMLAttributes<HTMLInputElement>,
-    ClassAttributes<HTMLInputElement> {
+interface IProps extends InputProps {
   placeholder?: string;
   type?: HTMLInputTypeAttribute | undefined;
 }
 export default function CharounInput({
   placeholder,
-  type,
+  type = "text",
   ...attributes
 }: IProps) {
   return (
     <>
-      <input type={type} placeholder={placeholder} {...attributes}></input>
+      <Input type={type} placeholder={placeholder} {...attributes}></Input>
     </>
   );
 }

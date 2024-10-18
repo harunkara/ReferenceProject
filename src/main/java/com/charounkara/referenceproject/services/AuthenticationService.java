@@ -63,15 +63,20 @@ public class AuthenticationService {
 
     public LoginResponseDTO loginUser(String username, String password){
             if(username.isBlank()|password.isBlank()){
-                throw new ApiRequestException("Kullanıcı adı veya şifre yanlış/eksik!", HttpStatus.BAD_REQUEST);
+                throw new ApiRequestException("Kullanıcı adı veya şifre eksik!", HttpStatus.BAD_REQUEST);
             }
-            Authentication auth = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(username, password)
-            );
+            try{
+                Authentication auth = authenticationManager.authenticate(
+                        new UsernamePasswordAuthenticationToken(username, password)
+                );
 
-            String token = tokenService.generateJwt(auth);
+                String token = tokenService.generateJwt(auth);
 
-            return new LoginResponseDTO(userRepository.findByUsername(username).get(), token);
+                return new LoginResponseDTO(userRepository.findByUsername(username).get(), token);
+            }catch (Exception exception){
+                throw new ApiRequestException("Kullanıcı adı veya şifre yanlış",HttpStatus.BAD_REQUEST);
+            }
+
 
 
     }

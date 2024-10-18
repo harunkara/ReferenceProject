@@ -1,6 +1,6 @@
 import { ChangeEvent, useContext, useState } from "react";
 import CharounInput from "../../components/form/CharounInput";
-import CharounContainer from "../../components/ui/CharounContainer";
+import CharounContainer from "../../components/ui/CharounCard";
 import { StringCases } from "../../utils/Cases";
 import CharounButton from "../../components/ui/CharounButton";
 import { sendRegisterRequest } from "../../services/RegisterPage/RegisterPageRequests";
@@ -39,7 +39,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <CharounContainer>
+    <CharounContainer title="Register">
       <CharounInput
         placeholder={useLocalize("username", StringCases["Title Case"])}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
