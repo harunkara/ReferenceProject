@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,13 +51,15 @@ public class AuthenticationService {
             Set<Role> authorities = new HashSet<>();
 
             authorities.add(userRole);
-            User tempUser=new User(0, username, encodedPassword, authorities);
+            User tempUser=new User(username, encodedPassword,authorities,3000.0);
             userRepository.save(tempUser);
             Authentication auth = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(username, password)
+                new UsernamePasswordAuthenticationToken(username, password)
             );
             String token = tokenService.generateJwt(auth);
             return new RegistrationResponseDTO(tempUser, token);
+
+
     }
 
     public LoginResponseDTO loginUser(String username, String password){
@@ -76,8 +77,6 @@ public class AuthenticationService {
             }catch (Exception exception){
                 throw new ApiRequestException("Kullanıcı adı veya şifre yanlış",HttpStatus.BAD_REQUEST);
             }
-
-
 
     }
 

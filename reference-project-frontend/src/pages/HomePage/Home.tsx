@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import RegisterPage from "../RegisterPage/Register";
 import LoginPage from "../LoginPage/Login";
@@ -8,6 +8,11 @@ import { Col, Row } from "antd";
 const HomePage = () => {
   const { user } = useContext(UserContext);
   console.log(user);
+  useEffect(() => {
+    if (user.username) {
+      //
+    }
+  }, []);
   return user.username ? (
     <div>Welcome {user.username}</div>
   ) : (

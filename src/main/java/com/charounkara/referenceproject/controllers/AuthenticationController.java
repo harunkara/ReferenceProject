@@ -1,13 +1,10 @@
 package com.charounkara.referenceproject.controllers;
 
-import com.charounkara.referenceproject.models.dtos.Errors.ErrorResponseDTO;
 import com.charounkara.referenceproject.models.dtos.LoginResponseDTO;
 import com.charounkara.referenceproject.models.dtos.RegistrationDTO;
 import com.charounkara.referenceproject.models.dtos.RegistrationResponseDTO;
-import com.charounkara.referenceproject.models.entities.User;
 import com.charounkara.referenceproject.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
