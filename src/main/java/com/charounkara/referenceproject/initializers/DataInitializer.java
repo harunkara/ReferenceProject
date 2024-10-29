@@ -51,8 +51,8 @@ public class DataInitializer {
 
     @Autowired
     private CurrencyRepository currencyRepository;
-    //Her 5 dakikada bir çalıştır
-    @Scheduled(fixedRate = 300000)
+    //Her 100 dakikada bir çalıştır
+    @Scheduled(fixedRate = 6000000)
     public void fetchAndStoreCurrencyRates() {
         RestTemplate restTemplate = new RestTemplate();
         try {
@@ -89,8 +89,8 @@ public class DataInitializer {
         }
     }
     //Altın fiyatını çekip veritabannına yazan kısım
-    //3 dakikada bir çalıştır
-    @Scheduled(fixedRate = 180000)
+    //100 dakikada bir çalıştır
+    @Scheduled(fixedRate = 6000000)
     public void fetchAndStoreGoldPrice(){
         try {
             // Hedef URL
@@ -134,8 +134,8 @@ public class DataInitializer {
             e.printStackTrace();
         }
     }
-    //Her 2 dakikada bir Türkiye borsasını güncelle
-    @Scheduled(fixedRate = 60000)
+    //Her 100 dakikada bir Türkiye borsasını güncelle
+    @Scheduled(fixedRate =6000000 )
     public void fetchAndStoreStockPrice(){
         try {
             // Target URL

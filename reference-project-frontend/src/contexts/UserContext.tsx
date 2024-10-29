@@ -25,7 +25,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     });
   const tempJwt = localStorage.getItem("jwt");
   const [user, setUser] = useState(JSON.parse(tempUser));
-  const [jwt, setJwt] = useState(tempJwt);
+  const [jwt, setJwt] = useState(JSON.parse(tempJwt || ""));
 
   const setUserFunc = (user: IUserModel) => {
     localStorage.setItem("user", JSON.stringify(user));
@@ -34,7 +34,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const setJwtFunc = (jwt: string) => {
     localStorage.setItem("jwt", JSON.stringify(jwt));
-    setJwt(jwt);
+    setJwt(JSON.parse(jwt));
   };
 
   const userContextValue = {
